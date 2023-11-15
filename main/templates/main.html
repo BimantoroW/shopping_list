@@ -63,11 +63,27 @@
                 <th>Date Added</th>
             </tr>`
             products.forEach((item) => {
+                var url_edit = "{% url 'main:edit_product' 9999 %}".replace(9999, item.pk)
+                var url_delete = "{% url 'main:delete_product' 9999 %}".replace(9999, item.pk)
                 htmlString += `\n<tr>
                 <td>${item.fields.name}</td>
                 <td>${item.fields.price}</td>
                 <td>${item.fields.description}</td>
                 <td>${item.fields.date_added}</td>
+                <td>
+                    <a href=${url_edit}>
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href=${url_delete}>
+                        <button>
+                            Delete
+                        </button>
+                    </a>
+                </td>
             </tr>` 
             })
             
@@ -84,9 +100,6 @@
             return false
         }
 
-        function generate_url(url_name, id) {
-            return "{{ kontol }}"
-        }
         refreshProducts()
         document.getElementById("button_add").onclick = addProduct
     </script>
